@@ -1,3 +1,3 @@
 ansible-galaxy install -r requirements.yml
 
-ansible-playbook fem.yml
+ansible-playbook local.yml --ask-become-pass

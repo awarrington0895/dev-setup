@@ -6,4 +6,5 @@ sudo apt-get update -y
 sudo apt-get install -y curl git software-properties-common ansible
 
 # pull ansible
-ansible-pull -U https://github.com/awarrington0895/dev-setup.git
+# ansible-pull -U https://github.com/awarrington0895/dev-setup.git
+./ansible.sh

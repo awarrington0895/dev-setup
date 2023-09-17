@@ -1,16 +1,16 @@
 - hosts: localhost
-  become: true
   pre_tasks:
     - name: Update cache
+      become: true
       apt:
         update_cache: true
-    - name: Install dependent roles
-      command: ansible-galaxy install -r requirements.yml
   tasks:
     - name: Install zsh
+      become: true
       apt: name=zsh
 
     - name: Change shell
+      become: true
       shell: chsh -s `which zsh`
 
     - name: Install ohmyzsh
@@ -22,6 +22,7 @@
       vars:
         linuxbrew_use_installer: true
         linuxbrew_init_shell: false
+        linuxbrew_install_tmp: ansible_env.HOME/tmp/linuxbrew
 
     - name: Install dotfiles
       include_role:
