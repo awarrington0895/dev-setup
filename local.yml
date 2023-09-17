@@ -4,6 +4,9 @@
     - name: Update cache
       apt:
         update_cache: true
+    - name: Install dependent roles
+      command: ansible-galaxy install -r requirements.yml
+  tasks:
     - name: Install zsh
       apt: name=zsh
 
