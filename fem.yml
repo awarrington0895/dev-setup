@@ -1,0 +1,32 @@
+- hosts: localhost
+  become: true
+  pre_tasks:
+    - name: Update cache
+      apt:
+        update_cache: true
+    - name: Install zsh
+      apt: name=zsh
+
+    - name: Change shell
+      shell: chsh -s `which zsh`
+
+    - name: Install ohmyzsh
+      shell: curl -L https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+
+    - name: Install Homebrew
+      include_role:
+        name: markosamuli.linuxbrew
+      vars:
+        linuxbrew_use_installer: true
+        linuxbrew_init_shell: false
+
+    - name: Install dotfiles
+      include_role:
+        name: hussainweb.chezmoi
+      vars:
+        chezmoi_init_url: "awarrington0895"
+
+    - name: Install neovim
+      community.general.homebrew:
+        name: neovim
+        state: present

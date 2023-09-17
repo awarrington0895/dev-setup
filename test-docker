@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+docker build . -t new-pc
+
+docker run --rm -it new-pc bash
